@@ -7,7 +7,6 @@ const reviewRouter = require("./routes/reviewRoutes")
 
 const AppError = require("./utils/appError")
 const globalErrorHandler = require("./controllers/errorControllers")
-const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
@@ -21,13 +20,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //limit the rate of request
-const limiter = rateLimit({
-    max: 50,
-    windowMs: 60 * 60 * 1000,
-    message: "Too many request from this IP, please try again in an hour!"
-})
+// const limiter = rateLimit({
+//     max: 50,
+//     windowMs: 60 * 60 * 1000,
+//     message: "Too many request from this IP, please try again in an hour!"
+// })
 
-app.use("/api", limiter);
+// app.use("/api", limiter);
 
 //bpdy parser, reading data from body into req.body
 app.use(express.json());
